@@ -1,22 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../Button/Button";
 import Input from "../../Input/Input";
 import classes from "./LoginForm.module.scss";
 import { setLocalStorage } from "../../../services/Storage";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../../store/user-slice";
 import Alert from "../../Alert/Alert";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../../store/apis/auth-apis";
+import useRoutesMiddleware from "../../../hooks/useRoutesMiddleware";
 
 const LoginForm = (props) => {
+  useRoutesMiddleware();
+
   const [username, setUsername] = useState("");
+
   const [password, setPassword] = useState("");
+
   const [login, loginResponse] = useLoginMutation();
 
-  const dispatch = useDispatch();
-
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const onChangeUsernameHandler = (e) => {
     setUsername(e.target.value);

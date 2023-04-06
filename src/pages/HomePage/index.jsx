@@ -7,6 +7,7 @@ import { productsActions } from "../../store/products-slice";
 import Alert from "../../components/Alert/Alert";
 import { userActions } from "../../store/user-slice";
 import Button from "../../components/Button/Button";
+import { removeLocalStorage } from "../../services/Storage";
 
 const HomePage = () => {
   const { data, isLoading, isSuccess } = useGetProductsQuery();
@@ -22,6 +23,7 @@ const HomePage = () => {
 
   const logoutHandler = () => {
     dispatch(userActions.logout());
+    removeLocalStorage("_token");
   };
 
   return (
