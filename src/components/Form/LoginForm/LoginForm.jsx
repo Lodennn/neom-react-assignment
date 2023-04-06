@@ -14,6 +14,8 @@ const LoginForm = (props) => {
   const [password, setPassword] = useState("");
   const [login, loginResponse] = useLoginMutation();
 
+  console.log("loginResponse: ", loginResponse);
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -42,9 +44,16 @@ const LoginForm = (props) => {
       });
   };
 
+  console.log(
+    "loginResponse.error.data.message: ",
+    loginResponse?.error?.data?.message
+  );
+
   return (
     <form className={classes.form} onSubmit={onSubmitHandler}>
-      {loginResponse?.error && <Alert>{loginResponse.error.message}</Alert>}
+      {loginResponse?.error && (
+        <Alert message={loginResponse.error.data.message} />
+      )}
       <Input
         name="username"
         placeholder={"Enter your username"}

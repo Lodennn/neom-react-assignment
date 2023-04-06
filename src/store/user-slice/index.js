@@ -3,8 +3,6 @@ import { getLocalStogae } from "../../services/Storage";
 
 const userToken = getLocalStogae("_token");
 
-console.log("userToken: ", userToken);
-
 const initialState = {
   token: userToken,
   user: null,
