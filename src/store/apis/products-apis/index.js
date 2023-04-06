@@ -7,9 +7,14 @@ const productsApi = mainApi.injectEndpoints({
         url: `products`,
       }),
     }),
+    searchProducts: builder.query({
+      query: (searchValue) => ({
+        url: `products/search?q=${searchValue}`,
+      }),
+    }),
   }),
 });
 
-export const { useGetProductsQuery } = productsApi;
+export const { useGetProductsQuery, useLazySearchProductsQuery } = productsApi;
 
 export default productsApi;

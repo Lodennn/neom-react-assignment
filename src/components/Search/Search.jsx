@@ -2,13 +2,24 @@ import { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
 import "./Search.scss";
+import { useLazySearchProductsQuery } from "../../store/apis/products-apis";
+import { useDispatch } from "react-redux";
+import { productsActions } from "../../store/products-slice";
 const Search = (props) => {
   const [searchValue, setSearchValue] = useState("");
+  const [search, searchResponse] = useLazySearchProductsQuery();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let timer = setTimeout(() => {
-      console.log("searchValue: ", searchValue);
-      // API CALL
+      search(searchValue)
+        .unwrap()
+        .then((response) => {
+          dispatch(
+            productsActions.filterProducts({ products: response.products })
+          );
+        })
+        .catch((err) => console.log("ERRPR: ", err));
     }, 300);
 
     return () => clearTimeout(timer);
@@ -18,14 +29,14 @@ const Search = (props) => {
     setSearchValue(e.target.value);
   };
 
-  const onSubmitHandler = (e) => {};
-
   return (
     <div className="search">
-      {/* <form onSubmit={onSubmitHandler}> */}
-      <Input className={"search__input"} onChange={onChangeSearchHandler} />
-      {/* <Button type="submit">Search</Button> */}
-      {/* </form> */}
+      <Input
+        className={"search__input"}
+        onChange={onChangeSearchHandler}
+        placeholder={"Search"}
+        autoFocus={true}
+      />
     </div>
   );
 };
