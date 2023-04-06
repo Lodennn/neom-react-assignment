@@ -2,12 +2,12 @@ import { useState } from "react";
 import Button from "../../Button/Button";
 import Input from "../../Input/Input";
 import classes from "./LoginForm.module.scss";
-import { useLoginMutation } from "../../../store/apis";
 import { setLocalStorage } from "../../../services/Storage";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../../store/user-slice";
 import Alert from "../../Alert/Alert";
 import { useNavigate } from "react-router-dom";
+import { useLoginMutation } from "../../../store/apis/auth-apis";
 
 const LoginForm = (props) => {
   const [username, setUsername] = useState("");

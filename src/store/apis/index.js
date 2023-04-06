@@ -5,17 +5,8 @@ const mainApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_BASE_URL,
   }),
-  endpoints: (builder) => ({
-    login: builder.mutation({
-      query: (body) => ({
-        url: `auth/login`,
-        body,
-        method: "POST",
-      }),
-    }),
-  }),
-});
 
-export const { useLoginMutation } = mainApi;
+  endpoints: (builder) => ({}),
+});
 
 export default mainApi;

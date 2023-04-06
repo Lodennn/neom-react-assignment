@@ -1,0 +1,26 @@
+.product {
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  &__image {
+    height: 60%;
+  }
+  &__img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  &__info {
+    height: 40%;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  &__sub {
+    margin-top: auto;
+  }
+  &__list {
+    // display: flex;
+  }
+}
