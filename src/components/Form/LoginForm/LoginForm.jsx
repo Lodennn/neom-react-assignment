@@ -14,8 +14,6 @@ const LoginForm = (props) => {
   const [password, setPassword] = useState("");
   const [login, loginResponse] = useLoginMutation();
 
-  console.log("loginResponse: ", loginResponse);
-
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -29,7 +27,6 @@ const LoginForm = (props) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log("SUBMIT", username, password);
     login({ username, password })
       .unwrap()
       .then((response) => {
@@ -37,17 +34,9 @@ const LoginForm = (props) => {
         dispatch(
           userActions.login({ token: response.token, user: { ...response } })
         );
-        navigate("/");
-      })
-      .catch((err) => {
-        console.log("ERROR: ", err);
+        navigate("/", { replace: true });
       });
   };
-
-  console.log(
-    "loginResponse.error.data.message: ",
-    loginResponse?.error?.data?.message
-  );
 
   return (
     <form className={classes.form} onSubmit={onSubmitHandler}>
@@ -58,12 +47,14 @@ const LoginForm = (props) => {
         name="username"
         placeholder={"Enter your username"}
         onChange={onChangeUsernameHandler}
+        className={classes["form__input"]}
       />
       <Input
         type="password"
         name="password"
         placeholder={"Enter your password"}
         onChange={onChangePasswordHandler}
+        className={classes["form__input"]}
       />
       <Button type="submit">Login</Button>
     </form>

@@ -18,8 +18,7 @@ const Search = (props) => {
           dispatch(
             productsActions.filterProducts({ products: response.products })
           );
-        })
-        .catch((err) => console.log("ERRPR: ", err));
+        });
     }, 300);
 
     return () => clearTimeout(timer);

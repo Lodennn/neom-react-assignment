@@ -1,0 +1,51 @@
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(31rem, 1fr));
+}
+
+.container {
+  max-width: 114rem;
+  margin: auto;
+  padding: 0 2rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.paragraph {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.mt {
+  &-1 {
+    margin-top: 1rem;
+  }
+}
+
+.p {
+  &-2 {
+    padding: 2rem;
+  }
+  &-4 {
+    padding: 4rem;
+  }
+}
+
+ul {
+  list-style: none;
+}
